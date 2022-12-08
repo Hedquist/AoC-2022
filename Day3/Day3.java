@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Day3 {
     public static void main(String[] args) {
-        partOne();
+        partTwo();
     }
 
     private static void partOne() {
@@ -23,6 +23,35 @@ public class Day3 {
                     break;
                 }
             }
+        }
+        System.out.println(output);
+    }
+
+    private static void partTwo() {
+        String[] input = readInput("Day3/input.txt");
+        int output = 0;
+        int counter = 0;
+        String temp = "";
+        String[] threes = new String[3];
+        for (String s :
+                input) {
+            threes[counter] = s;
+            if (counter == 2) {
+                for (int i = 0; i < threes[0].length(); i++) {
+                    if (threes[1].contains(Character.toString(threes[0].charAt(i)))) {
+                        temp += threes[0].charAt(i);
+                    }
+                }
+                for (int i = 0; i < temp.length(); i++) {
+                    if (threes[2].contains(Character.toString(temp.charAt(i)))) {
+                        output += letToNum(temp.charAt(i));
+                        break;
+                    }
+                }
+                temp = "";
+                counter = -1;
+            }
+            counter++;
         }
         System.out.println(output);
     }
